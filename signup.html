@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign Up · POROshop</title>
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--o:#F9A11B;--o2:#E08A00;--ink:#161616;--mut:#5c5c5c;--line:#e6dccd;--err:#E5484D;--ok:#2FA66A}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{min-height:100vh;font-family:Inter,system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+ background:radial-gradient(ellipse 700px 420px at 0 100%,rgba(246,200,160,.5),transparent 70%),radial-gradient(ellipse 700px 420px at 100% 0,rgba(255,214,150,.5),transparent 70%),linear-gradient(180deg,#FFF8EE 0%,#F9F1E7 55%,#F3E8DB 100%);background-attachment:fixed}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}img{display:block}
+
+/* background decoration */
+.fx{position:fixed;pointer-events:none;z-index:0}
+.blob{border-radius:50%;animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{translate:30px 24px}}
+.dotgrid{inset:0;background-image:radial-gradient(rgba(249,161,27,.35) 1.5px,transparent 1.8px);background-size:32px 32px;opacity:.5;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 10%,transparent 75%)}
+.ring{left:50%;top:50%;translate:-50% -50%;border-radius:50%;border:2px dashed rgba(249,161,27,.3);animation:spin 70s linear infinite}
+.ring.b{border:2px solid rgba(249,161,27,.14);animation-duration:100s;animation-direction:reverse}
+@keyframes spin{to{rotate:360deg}}
+.spark{position:fixed;z-index:0;color:var(--o);opacity:.7;animation:tw 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes tw{50%{opacity:.15;scale:.6}}
+
+/* header */
+header{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px max(20px,calc((100% - 1200px)/2))}
+.logo{font:700 32px/40px Lexend;color:var(--o);transition:transform .3s}.logo:hover{transform:scale(1.05)}
+.logo small{font:700 12px Lexend;color:var(--ink);margin-left:3px;letter-spacing:.04em}
+.hl{display:flex;align-items:center;gap:14px;font:500 16px Inter}
+.hl span{color:var(--mut)}
+.lg{height:42px;padding:0 20px;display:grid;place-items:center;border:1.5px solid #666;border-radius:8px;transition:all .25s}
+.lg:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* layout */
+main{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;max-width:1200px;margin:0 auto;padding:12px 20px 60px;min-height:calc(100vh - 82px)}
+
+/* promo side */
+.promo{position:relative;padding:20px 0}
+.tag{font:700 13px/20px Inter;letter-spacing:4px;color:var(--o)}
+.promo h1{margin-top:14px;font:600 clamp(32px,4.6vw,52px)/1.2 Lexend;letter-spacing:.02em}
+.promo h1 em{font-style:normal;color:var(--o);position:relative;white-space:nowrap}
+.promo h1 em small{font:700 .6em Lexend;letter-spacing:.06em;color:var(--ink);margin-left:3px}
+.promo h1 em svg{position:absolute;left:0;bottom:-8px;width:100%;height:10px;overflow:visible}
+.promo h1 em path{fill:none;stroke:var(--o);stroke-width:3.5;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:270;stroke-dashoffset:270;animation:draw 1s .8s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.promo>p{margin-top:20px;max-width:440px;font:500 18px/28px Inter;color:#5a5a5a}
+.perks{margin-top:26px;display:grid;gap:14px;list-style:none}
+.perks li{display:flex;align-items:center;gap:12px;font:500 16px/22px Inter;color:#333}
+.perks i{flex:none;width:30px;height:30px;border-radius:50%;background:#FFEBCB;display:grid;place-items:center}
+.perks svg{width:16px;height:16px;stroke:var(--o2);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.stack{--w:176px;position:relative;z-index:1;height:250px;margin-top:34px}
+.pc{position:absolute;width:var(--w);cursor:pointer;background:#fff;border-radius:10px;padding:10px;box-shadow:0 10px 26px rgba(60,40,20,.16);rotate:var(--r);animation:float var(--d) ease-in-out infinite;transition:scale .4s,rotate .4s}
+.pc:hover{scale:1.06;rotate:0deg}
+.pc .ph{height:120px;border-radius:8px;overflow:hidden;position:relative;background:linear-gradient(135deg,#f1eae1,#e1d6c8)}
+.pc .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc b{display:block;font:700 13px/17px Inter;margin-top:9px}
+.pc span{font:500 13px Inter;color:var(--o2)}
+@keyframes float{50%{translate:0 -10px}}
+
+/* form card */
+.card{position:relative;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid #F3DFB8;border-radius:24px;padding:36px 34px 30px;box-shadow:0 20px 50px rgba(120,80,20,.14);animation:up .8s .15s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes up{from{opacity:0;translate:0 30px}}
+.card h2{font:700 30px/38px Lexend}
+.card .sub{margin-top:6px;font:400 15px/22px Inter;color:var(--mut)}
+.socs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.sb{height:48px;border:1.5px solid var(--o);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;gap:9px;font:600 15px Inter;transition:all .25s}
+.sb:hover{background:#FFF1D6;translate:0 -2px}
+.sb svg{width:20px;height:20px}
+.or{display:flex;align-items:center;gap:12px;margin:20px 0 4px;font:500 13px Inter;color:#999}
+.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+form{display:grid;gap:16px;margin-top:14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f label{display:block;font:600 14px/20px Inter;margin-bottom:6px}
+.in{position:relative}
+.in input{width:100%;height:50px;padding:0 16px;border:1.5px solid #d9d2c6;border-radius:10px;background:#fff;font:400 16px Inter;color:var(--ink);outline:0;transition:border-color .25s,box-shadow .25s}
+.in input::placeholder{color:#aaa}
+.in input:focus{border-color:var(--o)}
+.f.bad input{border-color:var(--err)}
+.f.good input{border-color:var(--ok)}
+.in.pw input{padding-right:48px}
+.eye{position:absolute;right:6px;top:5px;width:40px;height:40px;display:grid;place-items:center;border-radius:8px;color:#777}
+.eye:hover{color:var(--o)}.eye svg{width:22px;height:22px}
+.msg{min-height:0;font:500 13px/18px Inter;color:var(--err);max-height:0;overflow:hidden;opacity:0;transition:max-height .25s,opacity .25s,margin .25s}
+.f.bad .msg{max-height:40px;opacity:1;margin-top:6px}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:9px}
+.meter i{height:5px;border-radius:3px;background:#eadfcf;transition:background .3s}
+.mt{margin-top:6px;font:500 12.5px Inter;color:#888;min-height:18px}
+.chk{display:flex;gap:11px;align-items:flex-start;font:400 14px/21px Inter;color:#555;cursor:pointer}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.chk .bx{flex:none;width:22px;height:22px;margin-top:0;border:1.5px solid #b8ad9c;border-radius:6px;background:#fff;display:grid;place-items:center;transition:all .2s}
+.chk .bx svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;scale:0;transition:scale .25s cubic-bezier(.3,1.6,.5,1)}
+.chk input:checked+.bx{background:var(--o);border-color:var(--o)}.chk input:checked+.bx svg{scale:1}
+.chk input:focus-visible+.bx{border-color:var(--o)}
+.chk a{color:var(--o2);font-weight:600}.chk a:hover{text-decoration:underline}
+.chk.bad .bx{border-color:var(--err)}
+.go{height:56px;border-radius:10px;background:var(--o);color:#fff;font:600 18px Inter;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 20px rgba(249,161,27,.35);transition:transform .3s cubic-bezier(.2,.9,.3,1.3),box-shadow .3s}
+.go:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 28px rgba(249,161,27,.5)}.go:active{transform:scale(.97)}
+.go svg{width:20px;height:20px;transition:translate .3s}.go:hover svg{translate:4px 0}
+.have{margin-top:20px;text-align:center;font:400 15px Inter;color:var(--mut)}
+.have a{color:var(--o2);font-weight:600}.have a:hover{text-decoration:underline}
+
+/* success */
+.done{display:none;text-align:center;padding:26px 6px 10px}
+.card.ok form,.card.ok .socs,.card.ok .or,.card.ok .have,.card.ok .head{display:none}
+.card.ok .done{display:block}
+.done .tick{width:84px;height:84px;margin:0 auto;border-radius:50%;background:var(--o);display:grid;place-items:center;box-shadow:0 12px 28px rgba(249,161,27,.45);animation:pp .6s cubic-bezier(.2,.9,.3,1.6)}
+@keyframes pp{from{scale:0}}
+.done .tick svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:draw2 .5s .35s forwards}
+@keyframes draw2{to{stroke-dashoffset:0}}
+.done h3{font:700 28px/36px Lexend;margin-top:22px}
+.done p{margin-top:10px;font:400 16px/24px Inter;color:var(--mut)}
+.done .go{margin-top:26px;display:inline-flex;padding:0 32px}
+
+/* tablet / phone */
+@media (max-width:900px){
+ main{grid-template-columns:1fr;gap:10px;padding-bottom:40px}
+ .promo{order:2;padding-top:30px}
+ .card{order:1}
+ .stack{height:230px}
+ .promo>p{max-width:none}
+}
+@media (max-width:480px){
+ header{padding:14px 16px}.logo{font-size:28px}.hl span{display:none}
+ .card{padding:26px 18px 22px;border-radius:20px}
+ .card h2{font-size:26px}
+ .row2{grid-template-columns:1fr}
+ .socs{grid-template-columns:1fr}
+ .stack{--w:150px}.pc .ph{height:100px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.promo h1 em path{stroke-dashoffset:0}.done .tick svg{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<div class="fx blob" style="left:-90px;top:-100px;width:260px;height:260px;background:#F6DCC4"></div>
+<div class="fx blob" style="right:-90px;top:30%;width:300px;height:300px;background:rgba(255,255,255,.5);animation-delay:-4s"></div>
+<div class="fx blob" style="left:25%;bottom:-120px;width:300px;height:300px;background:#F3DDBE;animation-delay:-8s"></div>
+<div class="fx dotgrid"></div>
+<div class="fx ring" style="width:640px;height:640px"></div>
+<div class="fx ring b" style="width:900px;height:900px"></div>
+<svg class="spark" style="left:8%;top:22%" width="20" height="20" viewBox="0 0 24 24"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z" fill="currentColor"/></svg>
+<svg class="spark" style="right:9%;top:14%;animation-delay:.8s" width="15" height="15" viewBox="0 0 24 24"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z" fill="currentColor"/></svg>
+<svg class="spark" style="left:46%;bottom:10%;animation-delay:1.6s" width="18" height="18" viewBox="0 0 24 24"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z" fill="currentColor"/></svg>
+<svg class="spark" style="right:6%;bottom:18%;animation-delay:2.2s" width="22" height="22" viewBox="0 0 24 24"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z" fill="currentColor"/></svg>
+
+<header>
+  <a class="logo" href="index.html">PORO<small>SHOP</small></a>
+  <div class="hl"><span>Already a member?</span><a class="lg" href="login.html">Login</a></div>
+</header>
+
+<main>
+  <section class="promo">
+    <div class="tag">JOIN FREE</div>
+    <h1>Start your story with <em>PORO<small>SHOP</small><svg viewBox="0 0 259 12" preserveAspectRatio="none"><path d="M3 8 Q 130 1 256 7"/></svg></em></h1>
+    <p>Create an account to save favorites, track orders, and sell your own finds to shoppers who love them.</p>
+    <ul class="perks">
+      <li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Save items you love with one tap</li>
+      <li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Shop from trusted sellers</li>
+      <li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Snap, list and start selling in minutes</li>
+    </ul>
+    <div class="stack" aria-hidden="true">
+      <div class="pc" style="left:0;top:20px;--r:-8deg;--d:3.6s;z-index:1"><div class="ph"><img src="assets/hero-1.jpg" alt="" onerror="this.remove()"></div><b>Smartphone 64GB</b><span>289.00$</span></div>
+      <div class="pc" style="left:calc((100% - var(--w))/2);top:60px;--r:6deg;--d:4.2s;z-index:2"><div class="ph"><img src="assets/hero-3.jpg" alt="" onerror="this.remove()"></div><b>Dragon Plush Charm</b><span>8.50$</span></div>
+      <div class="pc" style="left:calc(100% - var(--w));top:0;--r:-4deg;--d:3.9s;z-index:3"><div class="ph"><img src="assets/hero-7.jpg" alt="" onerror="this.remove()"></div><b>Canvas High Tops</b><span>54.99$</span></div>
+    </div>
+  </section>
+
+  <section class="card" id="card">
+    <div class="head">
+      <h2>Create account</h2>
+      <p class="sub">It takes less than a minute. No credit card needed.</p>
+    </div>
+
+    <div class="socs">
+      <button class="sb" type="button"><svg viewBox="0 0 24 24"><path d="M21.6 12.2c0-.7-.1-1.3-.2-1.9H12v3.7h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.300 3-7.300z" fill="#4285F4"/><path d="M12 22c2.700 0 5-.9 6.600-2.400l-3.200-2.500c-.9.600-2 1-3.400 1-2.600 0-4.800-1.800-5.600-4.100H3.100v2.600A10 10 0 0 0 12 22z" fill="#34A853"/><path d="M6.400 14c-.2-.6-.3-1.300-.3-2s.1-1.400.3-2V7.400H3.100a10 10 0 0 0 0 9.200z" fill="#FBBC05"/><path d="M12 5.900c1.500 0 2.800.5 3.800 1.500l2.900-2.900A10 10 0 0 0 3.100 7.400L6.400 10c.8-2.300 3-4.100 5.600-4.100z" fill="#EA4335"/></svg>Google</button>
+      <button class="sb" type="button"><svg viewBox="0 0 32 32" fill="#1877F2"><path d="M18.200 28V17.500h3.500l.6-4.200h-4.100v-2.600c0-1.200.4-2 2.100-2h2.200V5.100c-.4-.1-1.700-.2-3.200-.2-3.200 0-5.300 1.900-5.300 5.400v3H10.500v4.200H14V28z"/></svg>Facebook</button>
+    </div>
+    <div class="or">or sign up with email</div>
+
+    <form id="form" novalidate>
+      <div class="row2">
+        <div class="f" data-f="first"><label for="first">First name</label><div class="in"><input id="first" autocomplete="given-name" placeholder="Poro"></div><div class="msg">Please enter your first name.</div></div>
+        <div class="f" data-f="last"><label for="last">Last name</label><div class="in"><input id="last" autocomplete="family-name" placeholder="Pori"></div><div class="msg">Please enter your last name.</div></div>
+      </div>
+      <div class="f" data-f="email"><label for="email">Email</label><div class="in"><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div><div class="msg">Enter a valid email address.</div></div>
+      <div class="f" data-f="pw">
+        <label for="pw">Password</label>
+        <div class="in pw"><input id="pw" type="password" autocomplete="new-password" placeholder="At least 8 characters"><button class="eye" type="button" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.600-7 10-7 10 7 10 7-3.600 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+        <div class="meter" id="meter"><i></i><i></i><i></i><i></i></div><div class="mt" id="mt">Use 8+ characters with letters and numbers.</div>
+        <div class="msg">Password must be at least 8 characters.</div>
+      </div>
+      <div class="f" data-f="pw2"><label for="pw2">Confirm password</label><div class="in"><input id="pw2" type="password" autocomplete="new-password" placeholder="Repeat your password"></div><div class="msg">Passwords don’t match.</div></div>
+      <label class="chk" id="terms"><input type="checkbox" id="agree"><span class="bx"><svg viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></svg></span><span>I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a>.</span></label>
+      <button class="go" type="submit">Create account <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <p class="have">Already have an account? <a href="login.html">Login</a></p>
+
+    <div class="done" role="status">
+      <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></svg></div>
+      <h3>Welcome to POROshop!</h3>
+      <p id="doneMsg">Your account is ready.</p>
+      <a class="go" href="index.html">Start shopping <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const F=n=>$(`[data-f="${n}"]`),val=id=>$('#'+id).value.trim();
+const set=(n,ok)=>{const f=F(n);f.classList.toggle('bad',!ok);f.classList.toggle('good',ok);return ok};
+
+/* show / hide password */
+$('.eye').onclick=e=>{const i=$('#pw'),s=i.type==='password';i.type=s?'text':'password';$('#pw2').type=i.type;e.currentTarget.setAttribute('aria-label',s?'Hide password':'Show password')};
+
+/* strength meter */
+const COLS=['#E5484D','#F9A11B','#E2C23A','#2FA66A'],WORDS=['Too weak','Getting there','Good','Strong'];
+function score(p){let s=0;if(p.length>=8)s++;if(/[a-z]/.test(p)&&/[A-Z]/.test(p))s++;if(/\d/.test(p))s++;if(/[^A-Za-z0-9]/.test(p)||p.length>=12)s++;return s}
+$('#pw').addEventListener('input',()=>{const p=$('#pw').value,s=p?Math.max(1,score(p)):0;
+  $$('#meter i').forEach((b,i)=>b.style.background=i<s?COLS[s-1]:'');
+  $('#mt').textContent=p?WORDS[s-1]:'Use 8+ characters with letters and numbers.';
+  if(F('pw').classList.contains('bad'))set('pw',p.length>=8);
+  if($('#pw2').value)set('pw2',$('#pw2').value===p)});
+
+/* live validation after the first blur */
+const rules={first:()=>val('first').length>0,last:()=>val('last').length>0,email:()=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val('email')),pw:()=>$('#pw').value.length>=8,pw2:()=>$('#pw2').value.length>0&&$('#pw2').value===$('#pw').value};
+const ids={first:'first',last:'last',email:'email',pw:'pw',pw2:'pw2'};
+Object.keys(rules).forEach(k=>{const el=$('#'+ids[k]);el.addEventListener('blur',()=>{if(el.value)set(k,rules[k]())});el.addEventListener('input',()=>{if(F(k).classList.contains('bad'))set(k,rules[k]())})});
+$('#agree').onchange=()=>$('#terms').classList.remove('bad');
+
+/* submit */
+$('#form').addEventListener('submit',e=>{e.preventDefault();
+  let ok=true,firstBad=null;
+  Object.keys(rules).forEach(k=>{const r=set(k,rules[k]());if(!r){ok=false;firstBad=firstBad||$('#'+ids[k])}});
+  if(!$('#agree').checked){ok=false;$('#terms').classList.add('bad')}
+  if(!ok){(firstBad||$('#agree')).focus();return}
+  $('#doneMsg').textContent=`Thanks, ${val('first')}! We’ve set up your account for ${val('email')}.`;
+  $('#card').classList.add('ok');scrollTo({top:0,behavior:'smooth'})});
+</script>
+</body>
+</html>
